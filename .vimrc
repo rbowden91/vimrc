@@ -21,6 +21,8 @@ Bundle 'php.vim--Garvin'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/Command-T'
+Bundle 'roman/golden-ratio'
+Bundle 'vim-scripts/habiLight'
 "filetype plugin on
 " End Vundle stuff
 
