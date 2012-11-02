@@ -1,7 +1,7 @@
 ## Installation:
 
 If using RVM, you'll want to do
-    
+
     rvm use system
 
 Before installing!
@@ -16,7 +16,7 @@ Before installing!
     mv * colors 2> /dev/null
     cd ~/.vim/bundle/Command-T/ruby/command-t
     ruby extconf.rb
-    make 
+    make
 
 ## Shortcuts
 

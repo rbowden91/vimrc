@@ -23,6 +23,7 @@ Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/Command-T'
 Bundle 'roman/golden-ratio'
 Bundle 'vim-scripts/habiLight'
+Bundle 'vim-scripts/a.vim'
 "filetype plugin on
 " End Vundle stuff
 
