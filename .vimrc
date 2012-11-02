@@ -8,22 +8,22 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-markdown'
-Bundle 'vim-scripts/a.vim'
-Bundle 'sjl/gundo.vim'
+Bundle 'vim-scripts/Command-T'
 Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/a.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'sjl/gundo.vim'
 Bundle 'php.vim--Garvin'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'hukl/Smyck-Color-Scheme'
-Bundle 'vim-scripts/Command-T'
 Bundle 'roman/golden-ratio'
+
+Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
-Bundle 'vim-scripts/a.vim'
 "filetype plugin on
 " End Vundle stuff
 
@@ -58,6 +58,8 @@ set pastetoggle=<F2>
 set mouse=a
 set scrolloff=5
 
+set virtualedit=all
+
 function! ToggleMouse()
     if &mouse == 'a'
         set mouse=r
@@ -84,7 +86,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map ; :
 map <C-i> gt
 
 " highlight characters longer than 120 lines
