@@ -30,12 +30,9 @@ Bundle 'vim-scripts/habiLight'
 runtime macros/matchit.vim
 
 " disable annoying beep on errors
-set noerrorbells
-if has('autocmd')
-  autocmd GUIEnter * set vb t_vb=
-endif
+set visualbell t_vb=
 
-
+noremap - ,
 let mapleader=","
 
 set nohidden
@@ -58,7 +55,7 @@ set pastetoggle=<F2>
 set mouse=a
 set scrolloff=5
 
-set virtualedit=all
+"set virtualedit=all
 
 function! ToggleMouse()
     if &mouse == 'a'
@@ -70,14 +67,19 @@ function! ToggleMouse()
     endif
 endfunction
 
+inoremap jk <esc>
+
 nnoremap <F3> :call ToggleMouse()<CR>
-nnoremap <F5> :GundoToggle<CR>
 nnoremap k gk
 nnoremap j gj
 nnoremap <leader>o :NERDTreeToggle<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <leader>y :YRShow<CR>
 nnoremap <leader>w :FixWhitespace<CR>
+nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
@@ -87,9 +89,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-i> gt
-
-" highlight characters longer than 120 lines
-match ErrorMsg '\%>120v.\+'
 
 " repoen a file at the same line it was on when previously closed
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
