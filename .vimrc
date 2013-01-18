@@ -24,6 +24,7 @@ Bundle 'roman/golden-ratio'
 
 Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
+Bundle '/jcf/vim-latex'
 "filetype plugin on
 " End Vundle stuff
 
