@@ -22,7 +22,6 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'rson/vim-conque'
 Bundle 'rbowden91/ocaml-vim'
 
-Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
 Bundle 'jcf/vim-latex'
 "Bundle 'roman/golden-ratio'
