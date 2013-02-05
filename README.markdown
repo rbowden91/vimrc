@@ -20,4 +20,4 @@ Before installing!
 * `,g`: Toggle UNDO tree
 * `,c`: Send OCaml code to toplevel using either a motion or visual mode
 * `,e`: Send the current "block" (between ';;'s) of OCaml code to toplevel
-* `,b`: Send entire file to OCaml toplevel
+* `,f`: Send entire file to OCaml toplevel
