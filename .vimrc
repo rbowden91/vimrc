@@ -73,9 +73,8 @@ inoremap jk <esc>
 nnoremap <F3> :call ToggleMouse()<CR>
 nnoremap k gk
 nnoremap j gj
-nnoremap <leader>o :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-nnoremap <leader>y :YRShow<CR>
 nnoremap <leader>w :FixWhitespace<CR>
 nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
