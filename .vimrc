@@ -13,18 +13,19 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-scripts/Command-T'
-Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
 Bundle 'sjl/gundo.vim'
 Bundle 'php.vim--Garvin'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'roman/golden-ratio'
+Bundle 'rson/vim-conque'
+Bundle 'rbowden91/ocaml-vim'
 
 Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
-Bundle '/jcf/vim-latex'
+Bundle 'jcf/vim-latex'
+"Bundle 'roman/golden-ratio'
 "filetype plugin on
 " End Vundle stuff
 
@@ -100,13 +101,12 @@ set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set undodir=~/.vim/tmp
 set viewdir=~/.vim/tmp
-let g:yankring_history_dir = '~/.vim/tmp'
 
 " use confirm instead of aborting an action
 set confirm
 
 " automatically save and open views (folds)
-set viewoptions-=options
+"set viewoptions-=options
 
 augroup vimrc
     autocmd BufWritePost *
