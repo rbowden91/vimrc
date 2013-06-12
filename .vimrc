@@ -24,7 +24,7 @@ Bundle 'roman/golden-ratio'
 
 Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
-Bundle '/jcf/vim-latex'
+Bundle 'jcf/vim-latex'
 "filetype plugin on
 " End Vundle stuff
 
@@ -37,7 +37,7 @@ noremap - ,
 let mapleader=","
 
 set nohidden
-set tabstop=4
+set tabstop=8
 set backspace=indent,eol,start
 set autoindent
 set smartindent
@@ -48,7 +48,6 @@ set shiftround
 set showmatch
 set ignorecase
 set smartcase
-set expandtab
 set smarttab
 set hlsearch
 set incsearch
