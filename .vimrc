@@ -13,18 +13,18 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-scripts/Command-T'
-Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
 Bundle 'sjl/gundo.vim'
 Bundle 'php.vim--Garvin'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'roman/golden-ratio'
+Bundle 'rson/vim-conque'
+Bundle 'rbowden91/ocaml-vim'
 
-Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'vim-scripts/habiLight'
 Bundle 'jcf/vim-latex'
+"Bundle 'roman/golden-ratio'
 "filetype plugin on
 " End Vundle stuff
 
@@ -72,9 +72,8 @@ inoremap jk <esc>
 nnoremap <F3> :call ToggleMouse()<CR>
 nnoremap k gk
 nnoremap j gj
-nnoremap <leader>o :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-nnoremap <leader>y :YRShow<CR>
 nnoremap <leader>w :FixWhitespace<CR>
 nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -99,13 +98,12 @@ set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set undodir=~/.vim/tmp
 set viewdir=~/.vim/tmp
-let g:yankring_history_dir = '~/.vim/tmp'
 
 " use confirm instead of aborting an action
 set confirm
 
 " automatically save and open views (folds)
-set viewoptions-=options
+"set viewoptions-=options
 
 augroup vimrc
     autocmd BufWritePost *

@@ -12,20 +12,12 @@ Before installing!
     ln -s ~/.vim/.vimrc ~/.vimrc
     vim +BundleInstall +qall
 
-And then
-
-    cd ~/.vim/bundle/Smyck-Color-Scheme/
-    mkdir colors
-    mv * colors 2> /dev/null
-    cd ~/.vim/bundle/Command-T/ruby/command-t
-    ruby extconf.rb
-    make
-
 ## Shortcuts
 
-* `,o`: Toggle NERDTree
+* `,n`: Toggle NERDTree
 * `,t`: Show Command-T
 * `,w`: Remove whitespace at end of lines
-* `,y`: Toggle yank ring
 * `,g`: Toggle UNDO tree
-* `Ctrl+{h,j,k,l}`: Move among windows
+* `,c`: Send OCaml code to toplevel using either a motion or visual mode
+* `,e`: Send the current "block" (between ';;'s) of OCaml code to toplevel
+* `,f`: Send entire file to OCaml toplevel
