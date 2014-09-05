@@ -19,6 +19,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'php.vim--Garvin'
 Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'vim-scripts/coq_IDE'
 "Bundle 'rson/vim-conque'
 "Bundle 'rbowden91/ocaml-vim'
 
