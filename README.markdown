@@ -2,7 +2,8 @@
 
 iTerm color scheme fixes are in colors/
 
-For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/
+For Ruby issues (Command-T), see http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/
+For Powerline issues, see https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 
     mkdir ~/.vim
     git clone git@github.com:rbowden91/vimrc.git ~/.vim
@@ -15,6 +16,10 @@ For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-
     ruby extconf.rb
     make
 
+    # powerline stuff
+    pip install powerline-status
+
+
 ## Shortcuts
 
 * `,n`: Toggle NERDTree
@@ -22,7 +27,6 @@ For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-
 * `,w`: Remove whitespace at end of lines
 * `,g`: Toggle UNDO tree
 * `,/`: Clears out leftover search highlighting
-
 * ~~`,c`: Send OCaml code to toplevel using either a motion or visual mode~~
 * ~~`,e`: Send the current "block" (between ';;'s) of OCaml code to toplevel~~
 * ~~`,f`: Send entire file to OCaml toplevel~~

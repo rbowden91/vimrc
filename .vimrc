@@ -17,7 +17,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'vim-scripts/Command-T'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'powerline/powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/gundo.vim'
 Plugin 'php.vim--Garvin'
 Plugin 'bronson/vim-trailing-whitespace'
@@ -37,6 +38,15 @@ Plugin 'jcf/vim-latex'
 call vundle#end()
 filetype plugin indent on
 " End Vundle stuff
+
+" Swap Command-T functionality to open in new tab automatically, and in same
+" window with Ctrl-T
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+" vim-airline
+"let g:airline_theme='simple'
+set laststatus=2
 
 colorscheme smyck
 
