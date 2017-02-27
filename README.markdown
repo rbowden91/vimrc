@@ -3,11 +3,10 @@
 For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/
 
     mkdir ~/.vim
-    git clone git://github.com/rbowden91/vimrc.git ~/.vim
-    mkdir ~/.vim/bundle
+    git clone git@github.com:rbowden91/vimrc.git ~/.vim
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ln -s ~/.vim/.vimrc ~/.vimrc
-    vim +BundleInstall +qall
+    vim +PluginInstall +qall
 
 ## Shortcuts
 
