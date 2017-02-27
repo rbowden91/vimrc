@@ -4,6 +4,8 @@ For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-
 
     mkdir ~/.vim
     git clone git://github.com/rbowden91/vimrc.git ~/.vim
+    mkdir ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ln -s ~/.vim/.vimrc ~/.vimrc
     vim +BundleInstall +qall
 
