@@ -1,32 +1,35 @@
 set nocompatible
+
 " Vundle stuff
 " Need to turn on then off thanks to silly mac bug
 filetype on
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-markdown'
-Bundle 'vim-scripts/Command-T'
-Bundle 'vim-scripts/a.vim'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'Lokaltog/vim-powerline'
-Bundle 'sjl/gundo.vim'
-Bundle 'php.vim--Garvin'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'vim-scripts/coqIDE'
-"Bundle 'rson/vim-conque'
-"Bundle 'rbowden91/ocaml-vim'
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-markdown'
+Plugin 'vim-scripts/Command-T'
+Plugin 'vim-scripts/a.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'powerline/powerline'
+Plugin 'sjl/gundo.vim'
+Plugin 'php.vim--Garvin'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'jcf/vim-latex'
 
-Bundle 'vim-scripts/habiLight'
-Bundle 'jcf/vim-latex'
-"Bundle 'roman/golden-ratio'
-"filetype plugin on
+"Plugin 'vim-scripts/habiLight'
+"Plugin 'vim-scripts/coqIDE'
+"Plugin 'rson/vim-conque'
+"Plugin 'rbowden91/ocaml-vim'
+"Plugin 'roman/golden-ratio'
+
+call vundle#end()
+filetype plugin indent on
 " End Vundle stuff
 
 runtime macros/matchit.vim
