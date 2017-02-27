@@ -3,7 +3,6 @@
 iTerm color scheme fixes are in colors/
 
 For Ruby issues (Command-T), see http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/
-For Powerline issues, see https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 
     mkdir ~/.vim
     git clone git@github.com:rbowden91/vimrc.git ~/.vim
@@ -15,9 +14,6 @@ For Powerline issues, see https://powerline.readthedocs.io/en/latest/installatio
     cd ~/.vim/bundle/Command-T/ruby/command-t
     ruby extconf.rb
     make
-
-    # powerline stuff
-    pip install powerline-status
 
 
 ## Shortcuts
