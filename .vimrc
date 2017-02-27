@@ -23,7 +23,12 @@ Plugin 'php.vim--Garvin'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'jcf/vim-latex'
 
+" Sublime Text color scheme
+"Plugin 'danilo-augusto/vim-afterglow'
+
+" For light backgrounds
 "Plugin 'vim-scripts/habiLight'
+
 "Plugin 'vim-scripts/coqIDE'
 "Plugin 'rson/vim-conque'
 "Plugin 'rbowden91/ocaml-vim'
@@ -32,6 +37,8 @@ Plugin 'jcf/vim-latex'
 call vundle#end()
 filetype plugin indent on
 " End Vundle stuff
+
+colorscheme smyck
 
 runtime macros/matchit.vim
 
@@ -81,8 +88,6 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <leader>w :FixWhitespace<CR>
 nnoremap <leader>g :GundoToggle<CR>
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
 
 map <up> <nop>
 map <down> <nop>
@@ -131,5 +136,4 @@ set history=1000
 scriptencoding utf-8
 set encoding=utf-8
 set t_Co=256
-colorscheme smyck
 syntax on

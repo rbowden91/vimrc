@@ -21,7 +21,8 @@ For Ruby issues, see http://blog.parkermoore.de/2014/01/02/installing-command-t-
 * `,t`: Show Command-T
 * `,w`: Remove whitespace at end of lines
 * `,g`: Toggle UNDO tree
+* `,/`: Clears out leftover search highlighting
 
-* -`,c`: Send OCaml code to toplevel using either a motion or visual mode-
-* -`,e`: Send the current "block" (between ';;'s) of OCaml code to toplevel-
-* -`,f`: Send entire file to OCaml toplevel-
+* ~~`,c`: Send OCaml code to toplevel using either a motion or visual mode~~
+* ~~`,e`: Send the current "block" (between ';;'s) of OCaml code to toplevel~~
+* ~~`,f`: Send entire file to OCaml toplevel~~
