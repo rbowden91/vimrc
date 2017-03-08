@@ -160,6 +160,9 @@ imap <buffer> <silent> <C-S-Left>  <C-\><C-o>:CoqToCursor<CR>
 imap <buffer> <silent> <C-S-Down>  <C-\><C-o>:CoqNext<CR>
 imap <buffer> <silent> <C-S-Right> <C-\><C-o>:CoqToCursor<CR>
 
+" Use w!! to save a file with sudo permissions
+cmap w!! w !sudo tee % > /dev/null
+
 " End Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
