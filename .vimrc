@@ -6,6 +6,10 @@ filetype on
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
+
+" Need to install fzf
+set rtp+=~/.fzf
+
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -50,11 +54,11 @@ endif
 Plugin 'Valloric/YouCompleteMe'
 
 " Open up fuzzy file finder (,t)
-Plugin 'vim-scripts/Command-T'
+"Plugin 'vim-scripts/Command-T'
 " Swap Command-T functionality to open in new tab
 " automatically, and in same window with Ctrl-T
-let g:CommandTAcceptSelectionMap = '<C-t>'
-let g:CommandTAcceptSelectionTabMap = '<CR>'
+"let g:CommandTAcceptSelectionMap = '<C-t>'
+"let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 " View the undo tree (,g)
 Plugin 'sjl/gundo.vim'
@@ -65,6 +69,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 " File browser (,n)
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+let NERDTreeQuitOnOpen=1
 
 " For status line
 Plugin 'vim-airline/vim-airline'
@@ -92,6 +97,22 @@ let g:coquille_auto_move = 'true'
 Plugin 'vim-syntastic/syntastic'
 
 Plugin 'metakirby5/codi.vim'
+
+" Allow for Ctrl-{h,j,k,l} to swap between tmux and vim splits
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Dim inactive vim splits
+Plugin 'blueyed/vim-diminactive'
+
+Plugin 'junegunn/fzf.vim'
+
+"let g:session_default_to_last='yes'
+let g:session_autoload='no'
+let g:session_autosave='yes'
+let g:session_autosave_periodic=1
+let g:session_autosave_silent=1
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 
 " TODO
 "Plugin 'devjoe/vim-codequery'
@@ -136,9 +157,14 @@ nnoremap <leader>w :FixWhitespace<CR>
 nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>c :CoqLaunch<CR>
 
+" fzf
+nnoremap <leader>p :History<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>t :Files<CR>
+
 " Switch between tabs
-map <Tab> gt
-map <S-Tab> gT
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
 
 " May require disabling Mission Control Ctrl-directional shortcuts in OS X,
 map <C-Left> <C-w>h
@@ -149,16 +175,16 @@ map <C-Right> <C-w>l
 " CoqIDE Mappings
 " May require disabling Mission Control Ctrl-directional shortcuts in OS X,
 " or other global hotkeys
-au FileType coq call coquille#CoqideMapping()
-map <buffer> <silent> <C-S-Up>    :CoqUndo<CR>
-map <buffer> <silent> <C-S-Left>  :CoqToCursor<CR>
-map <buffer> <silent> <C-S-Down>  :CoqNext<CR>
-map <buffer> <silent> <C-S-Right> :CoqToCursor<CR>
-
-imap <buffer> <silent> <C-S-Up>    <C-\><C-o>:CoqUndo<CR>
-imap <buffer> <silent> <C-S-Left>  <C-\><C-o>:CoqToCursor<CR>
-imap <buffer> <silent> <C-S-Down>  <C-\><C-o>:CoqNext<CR>
-imap <buffer> <silent> <C-S-Right> <C-\><C-o>:CoqToCursor<CR>
+"au FileType coq call coquille#CoqideMapping()
+"map <buffer> <silent> <C-S-Up>    :CoqUndo<CR>
+"map <buffer> <silent> <C-S-Left>  :CoqToCursor<CR>
+"map <buffer> <silent> <C-S-Down>  :CoqNext<CR>
+"map <buffer> <silent> <C-S-Right> :CoqToCursor<CR>
+"
+"imap <buffer> <silent> <C-S-Up>    <C-\><C-o>:CoqUndo<CR>
+"imap <buffer> <silent> <C-S-Left>  <C-\><C-o>:CoqToCursor<CR>
+"imap <buffer> <silent> <C-S-Down>  <C-\><C-o>:CoqNext<CR>
+"imap <buffer> <silent> <C-S-Right> <C-\><C-o>:CoqToCursor<CR>
 
 " Use w!! to save a file with sudo permissions
 cmap w!! w !sudo tee % > /dev/null
@@ -178,15 +204,19 @@ au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 
+"set viminfo='100,<50,s10,h,%
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
+
+
 runtime macros/matchit.vim
 
 set pastetoggle=<F2>
 
 " store all swp files here
-set backupdir=~/.vim/tmp
-set directory=~/.vim/tmp
-set undodir=~/.vim/tmp
-set viewdir=~/.vim/tmp
+set backupdir=~/.vim/tmp//
+set directory=~/.vim/tmp//
+set undodir=~/.vim/tmp//
+set viewdir=~/.vim/tmp//
 
 " use confirm instead of aborting an action
 set confirm
@@ -225,6 +255,7 @@ set history=1000
 
 " This is set above, for airline plugin
 " set laststatus=2
+
 
 scriptencoding utf-8
 set encoding=utf-8
