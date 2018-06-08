@@ -2,16 +2,14 @@
 
 Vim 8 is required for some features! May need to install from source (https://github.com/vim/vim).
 
+Install fzf by following https://github.com/junegunn/fzf
+
 Requires ack (for ack.vim), cmake (for YouCompleteMe), codequery for vim-codequery
 
     sudo pip install pycscope
     sudo gem install starscope
 
-
-
 iTerm color scheme fixes are in colors/
-
-For Ruby issues (Command-T), see http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/ or http://www.justinbar.net/post/install-vim-with-ruby-support-and-command-t-plugin-on-ubuntu.
 
 For YouCompleteMe issues, see https://github.com/Valloric/YouCompleteMe. In particular, a brew-installed python might
 conflict with the version vim is using
@@ -24,14 +22,9 @@ conflict with the version vim is using
     ln -s ~/.vim/.vimrc ~/.vimrc
     vim +PluginInstall +qall
 
-    # compile Command-T stuff
-    cd ~/.vim/bundle/Command-T/ruby/command-t
-    ruby extconf.rb
-    make
-
     # compile YouCompleteMe stuff
-    cd ~/.vim/
-    # tern-completer requires node and npm
+    cd ~/.vim/bundle/YouCompleteMe
+    # tern-completer requires node and npm, clang-completer requires clang
     ./install.py --clang-completer --tern-completer
 
 
@@ -56,7 +49,7 @@ Make sure after installing that the `vim` command refers to the newly compiled v
 ## Shortcuts
 
 * `,n`: Toggle NERDTree
-* `,t`: Show Command-T
+* `,t`: Show fzf
 * `,w`: Remove whitespace at end of lines
 * `,g`: Toggle UNDO tree
 * `,/`: Clears out leftover search highlighting
