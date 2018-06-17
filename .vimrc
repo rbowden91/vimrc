@@ -37,10 +37,6 @@ Plugin 'mxw/vim-jsx'
 " Handle keys like pgup/down more intelligently, hopefully
 Plugin 'nacitar/terminalkeys.vim'
 
-" Indentation markers for lines indented with spaces
-" Screws up copying from iterm
-" Plugin 'Yggdroot/indentLine'
-
 " ack for files with :Ack
 Plugin 'mileszs/ack.vim'
 
@@ -52,13 +48,6 @@ if hostname == "Robs-Macbook-Pro-2.local"
     set pythondll=/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
 endif
 Plugin 'Valloric/YouCompleteMe'
-
-" Open up fuzzy file finder (,t)
-"Plugin 'vim-scripts/Command-T'
-" Swap Command-T functionality to open in new tab
-" automatically, and in same window with Ctrl-T
-"let g:CommandTAcceptSelectionMap = '<C-t>'
-"let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 " View the undo tree (,g)
 Plugin 'sjl/gundo.vim'
@@ -77,15 +66,6 @@ Plugin 'vim-airline/vim-airline-themes'
 "let g:airline_theme='simple'
 set laststatus=2
 
-"Plugin 'Twinside/vim-haskellConceal'
-
-" Coq IDE
-Plugin 'let-def/vimbufsync'
-Plugin 'the-lambda-church/coquille'
-" Automatically jump cursor to where CoqIDE is processing
-let g:coquille_auto_move = 'true'
-"Plugin 'vim-scripts/coqIDE'
-
 " Fancy formatting of, e.g., multiple lines of = or :
 " Easy Align is an alternative to Tabular
 "Plugin 'junegunn/vim-easy-align'
@@ -93,10 +73,8 @@ let g:coquille_auto_move = 'true'
 
 " Linting tools
 " ALE is an asynchronous alternative to syntastic
-"Plugin 'w0rp/ale'
-Plugin 'vim-syntastic/syntastic'
-
-Plugin 'metakirby5/codi.vim'
+" Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 
 " Allow for Ctrl-{h,j,k,l} to swap between tmux and vim splits
 Plugin 'christoomey/vim-tmux-navigator'
@@ -104,6 +82,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Dim inactive vim splits
 Plugin 'blueyed/vim-diminactive'
 
+" Fuzzy file finder (,t). Replaced Command-T
 Plugin 'junegunn/fzf.vim'
 
 "let g:session_default_to_last='yes'
@@ -124,9 +103,9 @@ Plugin 'xolox/vim-session'
 " For light backgrounds
 "Plugin 'vim-scripts/habiLight'
 
-"Plugin 'rson/vim-conque'
-"Plugin 'rbowden91/ocaml-vim'
-"Plugin 'roman/golden-ratio'
+" Hard-coded into this vimrc repo
+" https://github.com/hukl/Smyck-Color-Scheme
+colorscheme smyck
 
 call vundle#end()
 filetype plugin indent on
@@ -172,27 +151,11 @@ map <C-Down> <C-w>j
 map <C-Up> <C-w>k
 map <C-Right> <C-w>l
 
-" CoqIDE Mappings
-" May require disabling Mission Control Ctrl-directional shortcuts in OS X,
-" or other global hotkeys
-"au FileType coq call coquille#CoqideMapping()
-"map <buffer> <silent> <C-S-Up>    :CoqUndo<CR>
-"map <buffer> <silent> <C-S-Left>  :CoqToCursor<CR>
-"map <buffer> <silent> <C-S-Down>  :CoqNext<CR>
-"map <buffer> <silent> <C-S-Right> :CoqToCursor<CR>
-"
-"imap <buffer> <silent> <C-S-Up>    <C-\><C-o>:CoqUndo<CR>
-"imap <buffer> <silent> <C-S-Left>  <C-\><C-o>:CoqToCursor<CR>
-"imap <buffer> <silent> <C-S-Down>  <C-\><C-o>:CoqNext<CR>
-"imap <buffer> <silent> <C-S-Right> <C-\><C-o>:CoqToCursor<CR>
-
 " Use w!! to save a file with sudo permissions
 cmap w!! w !sudo tee % > /dev/null
 
 " End Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-colorscheme smyck
 
 " repoen a file at the same line it was on when previously closed
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -204,15 +167,12 @@ au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 
-"set viminfo='100,<50,s10,h,%
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
 
-
+" Extends matches of opening and closing tags to more than just one character
+" https://github.com/tmhedberg/matchit
 runtime macros/matchit.vim
 
-set pastetoggle=<F2>
-
-" store all swp files here
 set backupdir=~/.vim/tmp//
 set directory=~/.vim/tmp//
 set undodir=~/.vim/tmp//
@@ -244,18 +204,12 @@ set incsearch
 set mouse=a
 set scrolloff=5
 
-"set virtualedit=all
-
 set foldmethod=indent
 set foldlevel=999999
 set textwidth=120
 set undofile
 set undolevels=1000
 set history=1000
-
-" This is set above, for airline plugin
-" set laststatus=2
-
 
 scriptencoding utf-8
 set encoding=utf-8
