@@ -94,7 +94,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 
 " TODO
-"Plugin 'devjoe/vim-codequery'
+Plugin 'Shougo/unite.vim'
+Plugin 'devjoe/vim-codequery'
 "http://cscope.sourceforge.net/cscope_vim_tutorial.html
 
 " Sublime Text color scheme
