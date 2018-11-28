@@ -72,6 +72,7 @@ make
 sudo make install
 
 # download actual vimrc files
+cd ~
 rm -rf /tmp/vim ~/.vim ~/.vimrc
 git clone https://github.com/rbowden91/vimrc.git ~/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
