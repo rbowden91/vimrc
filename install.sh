@@ -12,7 +12,37 @@
 # ack: ack.vim (https://github.com/mileszs/ack.vim)
 # codequery: vim-codequery (https://github.com/devjoe/vim-codequery)
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+
+if [[ "$OS" == "Darwin" ]]; then
         # Mac OSX
 	# xcode cli tools need to be installed, as does brew
 
@@ -31,8 +61,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 	sudo ln -s $PIPPATH /usr/local/bin/pip3
 
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-
+elif [[ "$OS" == "Ubuntu" ]]; then
 	# mono takes a long time to install
 	# add PPA for Mono
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -64,13 +93,24 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
 		mono-complete \
 		openjdk-8-jre
 
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-        # ...
+elif [[ "$OS" == "Arch Linux" ]]; then
+	# couldn't find openjdk-8-jre, clang-tidy
+	sudo pacman -S --noconfirm ack python2 python3 nodejs ruby cmake ctags mono
+
+	# for codequery
+	sudo pacman -S qt5-tools
+	git clone https://aur.archlinux.org/codequery.git
+	cd codequery
+	makepkg -Acsy
+	cd ..
+	rm -rf codequery
 else
         # Unknown.
+	exit
 fi
 
 # install rust for YouCompleteMe
+# TODO: didn't seem to work for Arch
 curl https://sh.rustup.rs -sSf > /tmp/rust.sh
 sh /tmp/rust.sh -y
 source ~/.cargo/env
@@ -80,7 +120,7 @@ rm -f /tmp/rust.sh
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --update-rc
 
-pip install pycscope
+sudo pip install pycscope
 sudo gem install starscope
 sudo npm install -g typescript # for YouCompleteMe JavaScript/TypeScript support
 
@@ -112,5 +152,5 @@ vim +PluginInstall +qall
 
 # finish YouCompleteMe installation
 cd ~/.vim/bundle/YouCompleteMe
-# TODO: osx doesn't have java-completer
+# TODO: osx and arch don't have java-completer
 ./install.py --cs-completer --go-completer --rust-completer --java-completer --clang-completer
