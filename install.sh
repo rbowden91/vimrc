@@ -21,16 +21,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	sudo chown rbowden /usr/local/Frameworks
 
 	# couldn't find clang-tidy, *-dev, openjdk-8-jre
-	brew install ack python3 nodejs ruby cmake ctags codequery golang mono
+	brew install ack python2 python3 nodejs ruby cmake ctags codequery golang mono
 
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 	python3 get-pip.py
 	rm get-pip.py
 	PIPPATH=$(find /usr/local/Cellar/python/*/Frameworks/Python.framework/Versions/* -name bin)
-	export PATH="$PIPPATH:$PATH"
-	echo 'export PATH="'"$PIPPATH"':$PATH"' >> ~/.bashrc
+	PIPPATH="$PIPPATH/pip"
 
-	
+	sudo ln -s $PIPPATH /usr/local/bin/pip3
 
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
 

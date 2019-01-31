@@ -45,9 +45,9 @@ Plugin 'mileszs/ack.vim'
 " Restrict just to my laptop
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "Robs-Macbook-Pro-2.local"
-    set pythondll=/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
+    set pythondll=/usr/local/Cellar/python\@2/2.7.15_2/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
 endif
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 " View the undo tree (,g)
 Plugin 'sjl/gundo.vim'
