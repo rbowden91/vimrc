@@ -83,11 +83,20 @@ elif [[ "$OS" == "Ubuntu" ]]; then
 		python3-dev \
 		python-dev  \
 		git \
-		libncurses-dev \
+		libncurses5-dev \
+		libgnome2-dev \
+		libgtk2.0-dev \
+		libatk1.0-dev \
+		libgnomeui-dev \
+		libbonoboui2-dev \
+		libcairo2-dev \
+		libx11-dev \
+		libxpm-dev \
+		libxt-dev \
 		nodejs \
 		npm \
 		cmake \
-		ctags \
+		exuberant-ctags \
 		ack \
 		codequery \
 		golang-go \
