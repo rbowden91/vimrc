@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # tested on Ubuntu 18.04
 # developed in but not re-run in mojave 1/30/2019
 
@@ -79,6 +79,7 @@ elif [[ "$OS" == "Ubuntu" ]]; then
 		python3 \
 		python3-pip \
 		ruby \
+		ruby-dev \
 		python3-dev \
 		python-dev  \
 		git \
@@ -120,7 +121,7 @@ rm -f /tmp/rust.sh
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --update-rc
 
-sudo pip install pycscope
+pip install pycscope
 sudo gem install starscope
 sudo npm install -g typescript # for YouCompleteMe JavaScript/TypeScript support
 
@@ -128,7 +129,7 @@ sudo npm install -g typescript # for YouCompleteMe JavaScript/TypeScript support
 git clone --depth 1 https://github.com/vim/vim /tmp/vim
 cd /tmp/vim
 ./configure --prefix=/usr/local \
-	    --enable-gui=no \
+	    --enable-gui=auto \
 	    --without-x \
 	    --disable-nls \
 	    --enable-multibyte \
@@ -137,7 +138,8 @@ cd /tmp/vim
 	    --enable-python3interp \
 	    --enable-rubyinterp \
 	    --enable-cscope \
-	    --with-features=huge
+	    --with-features=huge \
+	    --with-clientserver
 make
 sudo make install
 rm -rf /tmp/vim
