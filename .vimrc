@@ -1,7 +1,9 @@
 set nocompatible
 
 " vim tricks: https://www.hillelwayne.com/post/intermediate-vim/
-
+" TODO: investigate these:
+" https://github.com/sheerun/vim-polyglot
+" https://github.com/svermeulen/vim-subversive
 
 " Vundle stuff
 " Need to turn on then off thanks to silly mac bug
@@ -94,7 +96,7 @@ Plugin 'blueyed/vim-diminactive'
 Plugin 'junegunn/fzf.vim'
 
 "let g:session_default_to_last='yes'
-let g:session_autoload='no'
+let g:session_autoload='yes'
 let g:session_autosave='yes'
 let g:session_autosave_periodic=1
 let g:session_autosave_silent=1
@@ -117,11 +119,18 @@ Plugin 'coot/cmdalias_vim'
 
 
 
+" Give vim access to virtualenv's python
+Plugin 'plytophogy/vim-virtualenv'
 
 " TODO
 Plugin 'Shougo/unite.vim'
 Plugin 'devjoe/vim-codequery'
 "http://cscope.sourceforge.net/cscope_vim_tutorial.html
+
+" tex
+Plugin 'lervag/vimtex'
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method='zathura'
 
 " Sublime Text color scheme
 "Plugin 'danilo-augusto/vim-afterglow'
@@ -142,6 +151,7 @@ filetype plugin indent on
 
 noremap - ,
 let mapleader=","
+let maplocalleader = "\\"
 
 """""""""""""""""""""""""""""""""""""
 " Map key to toggle opt
@@ -237,6 +247,7 @@ set confirm
 " automatically save and open views (folds)
 "set viewoptions-=options
 
+set pastetoggle=<F2>
 " disable annoying beep on errors
 set visualbell t_vb=
 set nohidden
@@ -260,6 +271,7 @@ set scrolloff=5
 set foldmethod=indent
 set foldlevel=999999
 set textwidth=120
+
 set undofile
 set undolevels=1000
 set history=1000
@@ -275,4 +287,11 @@ set history=1000
 scriptencoding utf-8
 set encoding=utf-8
 set t_Co=256
+
+" reformat paragraphs automatically to match 80 char textwidth
+autocmd FileType tex setlocal textwidth=80
+			    \ formatoptions+=a2t
+			    \ shiftwidth=2
+			    \ tabstop=2
+
 syntax on
