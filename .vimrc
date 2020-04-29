@@ -1,5 +1,8 @@
 set nocompatible
 
+" vim tricks: https://www.hillelwayne.com/post/intermediate-vim/
+
+
 " Vundle stuff
 " Need to turn on then off thanks to silly mac bug
 filetype on
@@ -14,6 +17,9 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+" MixedCase (crm), camelCase (crc), snake_case (crs), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt) are all just 3 keystrokes away.
+
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -75,6 +81,8 @@ set laststatus=2
 " ALE is an asynchronous alternative to syntastic
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'w0rp/ale'
+let g:ale_linters = { 'python': ['mypy'] }
+let g:ale_python_auto_pipenv = 1
 
 " Allow for Ctrl-{h,j,k,l} to swap between tmux and vim splits
 Plugin 'christoomey/vim-tmux-navigator'
@@ -92,6 +100,23 @@ let g:session_autosave_periodic=1
 let g:session_autosave_silent=1
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+
+" Autodetect paste in terminals that support bracketed pastes
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
+" automatic very magic mode
+Plugin 'coot/CRDispatcher'
+Plugin 'vim-scripts/Enchanted-Vim'
+Plugin 'coot/cmdalias_vim'
+"CmdAlias h\%[elp] top\ help   " very useful if you use 'splitbelow', but you want help to split above
+"CmdAlias re reg\ "0-*+/ 1
+"CmdAlias rn reg\ 123456789 1
+"CmdAlias ra reg abcdefghijklmnopqrstuwxyz 1
+"CmdAlias bc\%[close] BufClose
+"CmdAlias s %s
+
+
+
 
 " TODO
 Plugin 'Shougo/unite.vim'
@@ -118,7 +143,29 @@ filetype plugin indent on
 noremap - ,
 let mapleader=","
 
-function! ToggleMouse()
+"""""""""""""""""""""""""""""""""""""
+" Map key to toggle opt
+" https://vim.fandom.com/wiki/Quick_generic_option_toggling
+function MapToggle(key, opt)
+  let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
+  exec 'nnoremap '.a:key.' '.cmd
+  exec 'inoremap '.a:key." \<C-O>".cmd
+endfunction
+command -nargs=+ MapToggle call MapToggle(<f-args>)
+
+MapToggle <F2> paste
+set pastetoggle=<F2>
+" Display-altering option toggles
+" MapToggle <F1> hlsearch
+" MapToggle <F2> wrap
+" MapToggle <F3> list
+" Behavior-altering option toggles
+" MapToggle <F10> scrollbind
+" MapToggle <F11> ignorecase
+
+"""""""""""""""""""""""""""""""""""""
+" Toggle mouse support, often for copying text from the terminal with mouse highlighting
+function ToggleMouse()
     if &mouse == 'a'
         set mouse=r
         set nonu
@@ -127,8 +174,12 @@ function! ToggleMouse()
         set nu
     endif
 endfunction
-
 nnoremap <F3> :call ToggleMouse()<CR>
+
+"""""""""""""""""""""""""""""""""""""
+
+
+
 nnoremap k gk
 nnoremap j gj
 nnoremap <leader>n :NERDTreeTabsToggle<CR>
@@ -163,6 +214,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 
 " configure expanding of tabs for various file types
+set expandtab
 au BufRead,BufNewFile *.py set expandtab
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
@@ -211,6 +263,14 @@ set textwidth=120
 set undofile
 set undolevels=1000
 set history=1000
+
+"vnoremap <space> zf
+"au FileType py set autoindent
+"au FileType py set smartindent
+"au Filetype py set foldmethod=indent
+"au FileType py set textwidth=79 " PEP-8 Friendly
+"au FileType py nnoremap <space> za
+
 
 scriptencoding utf-8
 set encoding=utf-8
