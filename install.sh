@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# tested on Ubuntu 18.04
+# tested on Ubuntu 18.04, 20.04
 # developed in but not re-run in mojave 1/30/2019
 
 # Dependencies:
@@ -17,10 +17,12 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
     OS=$NAME
     VER=$VERSION_ID
+    CODENAME=$VERSION_CODENAME
 elif type lsb_release >/dev/null 2>&1; then
     # linuxbase.org
     OS=$(lsb_release -si)
     VER=$(lsb_release -sr)
+    CODENAME=$(lsb_release -sc)
 elif [ -f /etc/lsb-release ]; then
     # For some versions of Debian/Ubuntu without lsb_release command
     . /etc/lsb-release
@@ -60,17 +62,57 @@ if [[ "$OS" == "Darwin" ]]; then
 	PIPPATH="$PIPPATH/pip"
 
 	sudo ln -s $PIPPATH /usr/local/bin/pip3
+elif [[ "$OS" == "Arch Linux" ]]; then
+	# couldn't find openjdk-8-jre, clang-tidy
+	sudo pacman -S --noconfirm ack python2 python3 nodejs ruby cmake ctags mono
 
+	# for codequery
+	sudo pacman -S qt5-tools
+	git clone https://aur.archlinux.org/codequery.git
+        $(cd codequery && makepkg -Acsy)
+	rm -rf codequery
 elif [[ "$OS" == "Ubuntu" ]]; then
-	# mono takes a long time to install
-	# add PPA for Mono
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-	echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-	sudo apt-get update
-
-	sudo apt-get install -y curl
+    # mono takes a long time to install
+    # add PPA for Mono
+    # TODO: make this idempotent
+    #sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    # TODO: focal still used bionic?
+    #echo "deb https://download.mono-project.com/repo/ubuntu stable-$CODENAME main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+    sudo apt-get update
+    if [[ "$CODENAME" == "focal" ]]; then
+	sudo apt-get install -y \
+	        curl \
+		build-essential \
+		clang \
+		clang-tidy \
+		python2.7 \
+		python3 \
+		python3-pip \
+		ruby \
+		ruby-dev \
+		python3-dev \
+		python-dev  \
+		git \
+		libncurses5-dev \
+		libgtk2.0-dev \
+		libatk1.0-dev \
+		libcairo2-dev \
+		libx11-dev \
+		libxpm-dev \
+		libxt-dev \
+		nodejs \
+		npm \
+		cmake \
+		exuberant-ctags \
+		ack \
+		codequery \
+		golang-go \
+		mono-complete \
+		openjdk-8-jre
+    else
 
 	sudo apt-get install -y \
+	        curl \
 		build-essential \
 		clang \
 		clang-tidy \
@@ -102,18 +144,7 @@ elif [[ "$OS" == "Ubuntu" ]]; then
 		golang-go \
 		mono-complete \
 		openjdk-8-jre
-
-elif [[ "$OS" == "Arch Linux" ]]; then
-	# couldn't find openjdk-8-jre, clang-tidy
-	sudo pacman -S --noconfirm ack python2 python3 nodejs ruby cmake ctags mono
-
-	# for codequery
-	sudo pacman -S qt5-tools
-	git clone https://aur.archlinux.org/codequery.git
-	cd codequery
-	makepkg -Acsy
-	cd ..
-	rm -rf codequery
+    fi
 else
         # Unknown.
 	exit
@@ -130,7 +161,8 @@ rm -f /tmp/rust.sh
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --update-rc
 
-pip install pycscope
+# TODO: pip vs pip3
+pip3 install pycscope
 sudo gem install starscope
 sudo npm install -g typescript # for YouCompleteMe JavaScript/TypeScript support
 
