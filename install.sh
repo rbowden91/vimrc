@@ -2,16 +2,6 @@
 # tested on Ubuntu 18.04, 20.04
 # developed in but not re-run in mojave 1/30/2019
 
-# Dependencies:
-# build-essential, cmake, python3-dev: YouCompleteMe (https://github.com/Valloric/YouCompleteMe)
-# nodejs, npm: YouCompleteMe JavaScript/TypeScript support
-# clang, clang-tidy: YouCompleteMe C family support
-# golang-go: YouCompleteMe Go support
-# mono-complete (alternatively, just mono-devel): YouCompleteMe C# support
-# openjdk-8-jre: YouCompleteMe Java support
-# ack: ack.vim (https://github.com/mileszs/ack.vim)
-# codequery: vim-codequery (https://github.com/devjoe/vim-codequery)
-
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release

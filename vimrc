@@ -1,5 +1,6 @@
 set nocompatible
 
+"
 " vim tricks: https://www.hillelwayne.com/post/intermediate-vim/
 " TODO: investigate these:
 " https://github.com/sheerun/vim-polyglot
@@ -10,12 +11,25 @@ set nocompatible
 filetype on
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+let $CACHE=$HOME."/.cache/vim"
+let $CONFIG=$HOME."/.config/vim"
+let $MYVIMRC=$CONFIG.'/vimrc'
 
-" Need to install fzf
-set rtp+=~/.fzf
+" https://tlvince.com/vim-respect-xdg
+let &directory=$CACHE
+let &backupdir=$CACHE
+let &undodir=$CACHE
+let &viewdir=$CACHE
+let &viminfo="%,<800,'10,/50,:100,h,f0,n".$CACHE."/viminfo"
 
-call vundle#begin()
+let &runtimepath=$CONFIG.','
+let &runtimepath.=$CONFIG.'/after,'
+let &runtimepath.=$VIM.','
+let &runtimepath.=$VIMRUNTIME.','
+let &runtimepath.=$CONFIG.'/bundle/Vundle.vim,'
+let &runtimepath.=$HOME.'/.config/fzf,'.$HOME.'/.fzf'
+
+call vundle#begin($CONFIG.'/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 
@@ -27,17 +41,46 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-markdown'
 
+Plugin 'scrooloose/nerdcommenter'
+
+" Syntax highlighting
+Plugin 'StanAngeloff/php.vim' " php
+Plugin 'pangloss/vim-javascript' " javascript
+Plugin 'mxw/vim-jsx' " jsx
+Plugin 'hjson/vim-hjson' " hjson
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
 " Switch between .c file and .h file with :A
 Plugin 'vim-scripts/a.vim'
 
-" Up-to-date PHP syntax highlighting
-Plugin 'StanAngeloff/php.vim'
 
-" Better JavaScript syntax highlighting
-Plugin 'pangloss/vim-javascript'
+" Python
+" Plugin 'python-mode/python-mode'
+Plugin 'fisadev/vim-isort'
+" let g:vim_isort_map = '<C-i>'
+" :Isort
+" Give vim access to virtualenv's python
+" TODO: is this needed with python-mode??
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jeetsukumaran/vim-pythonsense'
+" google/yapf: python formatting
+" Chiel92/vim-autoformat
+" ALEFix?
+"
+" let b:ale_fixers = [
+"       'remove_trailing_lines',
+"       'isort',
+"       'ale#fixers#generic_python#BreakUpLongLines',
+"       'yapf',
+" ]
+"
+" python-mode/python-mode (hi pythonSelf ctermfg=68 guifg=#5f87d7 cterm=bold gui=bold
+" Yggdroot/indentLine or nathanaelkane/vim-indent-guides
+" vim-fz fzy vs fzf
+"
 
-" JSX syntax highlighting
-Plugin 'mxw/vim-jsx'
+
+
 
 " Replace some Python/Haskell keywords with math symbols
 "Plugin 'ehamberg/vim-cute-python'
@@ -49,12 +92,6 @@ Plugin 'nacitar/terminalkeys.vim'
 Plugin 'mileszs/ack.vim'
 
 " Autocompletion
-" Fix vim dynamically loading the system python by forcing it to load brew's.
-" Restrict just to my laptop
-let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "Robs-Macbook-Pro-2.local"
-    set pythondll=/usr/local/Cellar/python\@2/2.7.15_2/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
-endif
 "Plugin 'Valloric/YouCompleteMe'
 
 " View the undo tree (,g)
@@ -83,25 +120,27 @@ set laststatus=2
 " ALE is an asynchronous alternative to syntastic
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'w0rp/ale'
-let g:ale_linters = { 'python': ['mypy'] }
+" flake8 also exists
+let g:ale_linters = { 'python': ['mypy']} ", 'pylint'] }
 let g:ale_python_auto_pipenv = 1
 
 " Allow for Ctrl-{h,j,k,l} to swap between tmux and vim splits
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Dim inactive vim splits
-Plugin 'blueyed/vim-diminactive'
+Plugin 'TaDaa/vimade'
 
 " Fuzzy file finder (,t). Replaced Command-T
 Plugin 'junegunn/fzf.vim'
 
 "let g:session_default_to_last='yes'
-let g:session_autoload='yes'
-let g:session_autosave='yes'
-let g:session_autosave_periodic=1
-let g:session_autosave_silent=1
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
+" TODO: need to handle where sessions are stored...
+"let g:session_autoload='no'
+"let g:session_autosave='yes'
+"let g:session_autosave_periodic=1
+"let g:session_autosave_silent=1
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
 
 " Autodetect paste in terminals that support bracketed pastes
 Plugin 'ConradIrwin/vim-bracketed-paste'
@@ -117,10 +156,9 @@ Plugin 'coot/cmdalias_vim'
 "CmdAlias bc\%[close] BufClose
 "CmdAlias s %s
 
+Plugin 'chrisbra/Colorizer'
+"set termguicolors=1
 
-
-" Give vim access to virtualenv's python
-Plugin 'plytophogy/vim-virtualenv'
 
 " TODO
 Plugin 'Shougo/unite.vim'
@@ -195,6 +233,15 @@ nnoremap j gj
 nnoremap <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <leader>w :FixWhitespace<CR>
+nnoremap <leader>a :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <leader>2 :so $VIMRUNTIME/syntax/hitest.vim
+
 nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>c :CoqLaunch<CR>
 
@@ -230,16 +277,11 @@ au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
 
 " Extends matches of opening and closing tags to more than just one character
 " https://github.com/tmhedberg/matchit
 runtime macros/matchit.vim
 
-set backupdir=~/.vim/tmp//
-set directory=~/.vim/tmp//
-set undodir=~/.vim/tmp//
-set viewdir=~/.vim/tmp//
 
 " use confirm instead of aborting an action
 set confirm
