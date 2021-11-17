@@ -40,6 +40,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-unimpaired'
 
 Plugin 'scrooloose/nerdcommenter'
 
@@ -95,7 +96,8 @@ Plugin 'mileszs/ack.vim'
 "Plugin 'Valloric/YouCompleteMe'
 
 " View the undo tree (,g)
-Plugin 'sjl/gundo.vim'
+" Plugin 'sjl/gundo.vim'
+Plugin 'mbbill/undotree'
 
 " Remove end of line whitespace (,w)
 Plugin 'bronson/vim-trailing-whitespace'
@@ -146,9 +148,9 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 
 " automatic very magic mode
-Plugin 'coot/CRDispatcher'
-Plugin 'vim-scripts/Enchanted-Vim'
-Plugin 'coot/cmdalias_vim'
+"Plugin 'coot/CRDispatcher'
+"Plugin 'vim-scripts/Enchanted-Vim'
+"Plugin 'coot/cmdalias_vim'
 "CmdAlias h\%[elp] top\ help   " very useful if you use 'splitbelow', but you want help to split above
 "CmdAlias re reg\ "0-*+/ 1
 "CmdAlias rn reg\ 123456789 1
@@ -242,7 +244,7 @@ function! <SID>SynStack()
 endfunc
 nnoremap <leader>2 :so $VIMRUNTIME/syntax/hitest.vim
 
-nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>g :UndotreeToggle<CR>
 nnoremap <leader>c :CoqLaunch<CR>
 
 " fzf
